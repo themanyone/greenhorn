@@ -5,13 +5,15 @@
 
 ./greenhorn
 
-Displays interactive help for regular Python commands, such as . __builtins__
+Displays interactive help for regular Python commands (also known as __builtins__).
 
 ./greenhorn gtk
 
 Displays interactive help for the 'gtk' module.
 
 = Details =
+
+In order to display interactive help, the program must first load the module. There seems to be a bug with dynamic module loading, so modify the source to import additional modules that you may want interactive help on:
 
 #~ import any modules you want to inspect
 {{{
