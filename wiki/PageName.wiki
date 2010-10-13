@@ -31,3 +31,9 @@ This program evaluates and displays the output from the dir() command and output
 ./greenhorn self
 
 If you use Greenhorn to inspect itself and search for any of the modules Greenhorn exports, such as entry_changed_cb, a source code tab will appear as a child. (Click the arrow and double-click on 'source' to see the listing.)
+
+Source code browsing also works on other modules that have source code available. The Python 'inspect' module is one of them.
+
+./greenhorn inspect
+
+This is very handy if you often use other people's modules and can't find documentation for them.
