@@ -1,7 +1,26 @@
 #labels Featured,Phase-Implementation,Phase-Support
 #Instructions for using Greenhorn
 
-= Usage =
+= Document Your Sources =
+
+To add a documentation string to a Python module, enclose it in """triple-quotes"""
+
+I have heard that this is the recommended way to document your code and you should be doing this anyway.
+
+Example:
+
+{{{
+def get_dir(treeviewcolumn, cell_renderer, model, iter):
+    """Callback to set text property to match treemodel data.
+    
+    The text may be different or contain extra style information
+    but here we are setting it to be the same."""
+    val = model.get_value(iter, 0)
+    cell_renderer.set_property('text', str(val))
+    return
+}}}
+
+= Browse Documentation =
 
 ./greenhorn
 
@@ -24,7 +43,7 @@ import sys,twitter,inspect,os
 import gtk
 }}}
 
-= Browsing Source Code =
+= Inspect Source Code =
 
 This program evaluates and displays the output from the dir() command and outputs each functions .__doc__ string when tree items are clicked on. If local modules are imported, a source tab will appear, allowing you to browse source code on that item. For example:
 
@@ -37,22 +56,3 @@ Source code browsing also works on other modules that have source code available
 ./greenhorn inspect
 
 This is very handy if you often use other people's modules and can't find documentation for them.
-
-= Document Your Sources =
-
-To add a documentation string to a Python module, enclose it in """triple-quotes"""
-
-I have heard that this is the recommended way to document your code and you should be doing this anyway.
-
-Example:
-
-{{{
-def get_dir(treeviewcolumn, cell_renderer, model, iter):
-    """Callback to set text property to match treemodel data.
-    
-    The text may be different or contain extra style information
-    but here we are setting it to be the same."""
-    val = model.get_value(iter, 0)
-    cell_renderer.set_property('text', str(val))
-    return
-}}}
