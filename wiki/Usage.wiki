@@ -30,6 +30,10 @@ Displays interactive help for regular Python commands (also known as __builtins_
 
 Displays interactive help for the 'gtk' module.
 
+= Search =
+
+To search for an item, type part of its name in the search box and press Enter.
+
 = Details =
 
 In order to display interactive help, the program must first load the module. There seems to be a bug with dynamic module loading, so modify the source to import additional modules that you may want interactive help on:
