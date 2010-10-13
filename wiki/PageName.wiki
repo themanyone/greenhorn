@@ -24,7 +24,7 @@ import sys,twitter,inspect,os,fedora
 import gtk
 }}}
 
-= How it works =
+= Browsing Source Code =
 
 This program evaluates and displays the output from the dir() command and outputs each functions .__doc__ string when tree items are clicked on. If local modules are imported, a source tab will appear, allowing you to browse source code on that item. For example:
 
