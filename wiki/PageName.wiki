@@ -14,7 +14,10 @@ Displays interactive help for the 'gtk' module.
 = Details =
 
 #~ import any modules you want to inspect
+{{{
 import sys,twitter,inspect,os,fedora
-
+}}}
 #~ global modules
+{{{
 import gtk
+}}}
