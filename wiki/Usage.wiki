@@ -17,7 +17,7 @@ In order to display interactive help, the program must first load the module. Th
 
 #~ import any modules you want to inspect
 {{{
-import sys,twitter,inspect,os,fedora
+import sys,twitter,inspect,os
 }}}
 #~ global modules
 {{{
