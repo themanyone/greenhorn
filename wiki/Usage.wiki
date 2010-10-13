@@ -59,4 +59,4 @@ Source code browsing also works on other modules that have source code available
 
 ./greenhorn inspect
 
-This is very handy if you often use bleeding-edge modules for which the documentation sucks.
+This is very handy if you often use bleeding-edge modules for which the documentation changes rapidly or otherwise sucks.
