@@ -3,7 +3,7 @@
 
 = Document Your Sources =
 
-To add a documentation string to a Python module, enclose it in """triple-quotes"""
+To add a documentation string to your Python modules and functions, enclose the documentation in """triple-quotes"""
 
 I have heard that this is the recommended way to document your code and you should be doing this anyway.
 
