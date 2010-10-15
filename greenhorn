@@ -18,7 +18,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 #~ import any modules you want to inspect
-import sys,twitter,inspect,os
+import sys,inspect,os
 
 #~ global modules
 import gtk
@@ -101,10 +101,10 @@ class foo(gtk.Window):
         model = treeview.get_model()
         val=model.get_value(iter,0)
         dotname=self.get_dot_name(treeview,iter,model)
-        type=str(eval('type('+dotname+')')).split("'")[1]
+        functype=str(eval('type('+dotname+')')).split("'")[1]
         t=['function','instancemethod']
-        print dotname,type
-        if path not in self.expanded and not type in t:
+        print (dotname,functype)
+        if path not in self.expanded and not functype in t:
             self.expanded.append(path)
             self.populate_branch(iter,dotname)
         
@@ -122,7 +122,7 @@ class foo(gtk.Window):
                 t=str(eval('type('+dotname+')')).split("'")[1]
             except:
                 pass
-            print dotname,t
+            print (dotname,t)
             text=eval(dotname).__doc__
             if not text:
                 text=t
