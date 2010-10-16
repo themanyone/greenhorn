@@ -1,6 +1,4 @@
 #labels Featured,Phase-Implementation,Phase-Support
-#Instructions for using Greenhorn
-
 = Document Your Sources =
 
 To add a documentation string to your Python modules and functions, enclose the documentation in """triple-quotes"""
@@ -19,6 +17,10 @@ def get_dir(treeviewcolumn, cell_renderer, model, iter):
     cell_renderer.set_property('text', str(val))
     return
 }}}
+
+= Checkout =
+
+svn checkout https://greenhorn.googlecode.com/svn/trunk/greenhorn
 
 = Browse Documentation =
 
