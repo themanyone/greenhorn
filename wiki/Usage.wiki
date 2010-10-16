@@ -22,11 +22,11 @@ def get_dir(treeviewcolumn, cell_renderer, model, iter):
 
 = Browse Documentation =
 
-./greenhorn
+./greenhorn.py
 
 Displays interactive help for regular Python commands (also known as __builtins__).
 
-./greenhorn gtk
+./greenhorn.py gtk
 
 Displays interactive help for the 'gtk' module.
 
@@ -51,12 +51,12 @@ import gtk
 
 This program evaluates and displays the output from the dir() command and outputs each functions .__doc__ string when tree items are clicked on. If local modules are imported, a source tab will appear, allowing you to browse source code on that item. For example:
 
-./greenhorn self
+./greenhorn.py self
 
 If you use Greenhorn to inspect itself and search for any of the modules Greenhorn exports, such as entry_changed_cb, a source code tab will appear as a child. (Click the arrow and double-click on 'source' to see the listing.)
 
 Source code browsing also works on other modules that have source code available. The Python 'inspect' module is one of them.
 
-./greenhorn inspect
+./greenhorn.py inspect
 
 This is very handy if you often use bleeding-edge modules for which the documentation changes rapidly or otherwise sucks.
