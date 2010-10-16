@@ -23,6 +23,8 @@ import sys,inspect,os
 #~ global modules
 import gtk
 
+(Jump, Search, Help) = range(3)
+
 def get_dir(treeviewcolumn, cell_renderer, model, iter):
     """Callback to set text property to match treemodel data.
     
@@ -52,6 +54,7 @@ class foo(gtk.Window):
             sel=self.treeview.get_selection()
             sel.select_iter(iter)
             self.treeview.scroll_to_cell(path)
+            self.treeview.set_cursor(path)
             return True
         else:
             return False
@@ -62,8 +65,13 @@ class foo(gtk.Window):
         Clears recent searches so we can search again."""
         self.found=[]
         
-    def entry_activate_cb(self,entry):
+    def entry_activate_cb(self,entry,user_data=None):
+        """Called when search button or Enter is pressed."""
+        entry=self.entry1
         text = entry.get_text()
+        if user_data=Help:
+            os.popen('devhelp -s '+text)
+            return
         model=self.treeview.get_model()
         model.foreach(self.func_cb,text)
         
@@ -140,7 +148,8 @@ class foo(gtk.Window):
         self.expanded=[]
         self.found=[]
         gtk.Window.__init__(self)
-        self.set_title("Nav "+dirarg)
+        self.set_title("Greenhorn "+dirarg)
+        self.set_icon_from_file('greenhorn.png')
         self.treestore = gtk.TreeStore(object)
         
         self.treeview = gtk.TreeView(self.treestore)
@@ -163,23 +172,29 @@ class foo(gtk.Window):
         scroll2.set_property("hscrollbar-policy",gtk.POLICY_NEVER)
         scroll2.add(self.textview)
         
-        button=gtk.ToolButton(icon_widget=None, label=None)
-        button.set_property("stock-id",gtk.STOCK_HELP)
+        self.button_search=gtk.Button(label=None,stock=gtk.STOCK_JUMP_TO)
+        self.button_help=gtk.Button(label=None,stock=gtk.STOCK_HELP)
         
         vbox1=gtk.VBox()
         hbox1=gtk.HBox()
+        hbox2=gtk.HBox()
         
         hbox1.pack_start(vbox1)
         hbox1.pack_start(scroll2)
-        vbox1.pack_start(self.entry1,False)
+        vbox1.pack_start(hbox2,False)
+        hbox2.pack_start(self.entry1,False)
+        hbox2.pack_start(self.button_search,False,False)
+        hbox2.pack_start(self.button_help,False,False)
         vbox1.pack_start(scroll1)        
         self.add(hbox1)
-        
+              
         #~ set callback funcs
         tvcolumn.set_cell_data_func(cell, get_dir, data=None)
         self.treeview.connect('row-activated', self.row_activated_cb)
         self.treeview.connect('row-expanded', self.row_expanded_cb)
-        self.entry1.connect('activate',self.entry_activate_cb)
+        self.entry1.connect('activate',self.entry_activate_cb,Jump)
+        self.button_search.connect('clicked',self.entry_activate_cb,Search)
+        self.button_help.connect('clicked',self.entry_activate_cb,Help)
         self.entry1.connect('changed',self.entry_changed_cb)
         self.connect('destroy', lambda w: gtk.main_quit())
 
