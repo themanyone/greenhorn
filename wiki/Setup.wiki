@@ -1,0 +1,10 @@
+#summary One-sentence summary of this page.
+#labels Phase-Requirements
+
+= Dependencies =
+Install the following dependencies:
+  * [http://www.python.org/ Python 2.7] (maybe others?)
+  * [http://www.pygtk.org/ pygtk]
+  * [http://projects.gnome.org/gtksourceview/pygtksourceview.html pygtksourceview2]
+
+[Usage]
