@@ -20,7 +20,7 @@
 import sys,inspect
 
 #~ global modules
-import gtk
+import gtk,gtksourceview2
 
 (Jump, Search, Help) = range(3)
 
@@ -123,8 +123,10 @@ class gdir(gtk.Window):
         dotname=self.get_dot_name(treeview,iter,model)
         if val=='source':
             text=inspect.getsource(eval(dotname[:dotname.rindex('.')]))
+            self.text.set_highlight_syntax(True)
         else:
             t=''
+            self.text.set_highlight_syntax(False)
             try:
                 t=str(type(eval(dotname))).split("'")[1]
             except:
@@ -162,11 +164,19 @@ class gdir(gtk.Window):
         self.treeview.set_enable_search(False)
         
         scroll1 = gtk.ScrolledWindow()
-        scroll1.set_property("hscrollbar-policy",gtk.POLICY_NEVER)
+        #~ scroll1.set_property("hscrollbar-policy",gtk.POLICY_NEVER)
         scroll1.add(self.treeview)
         
-        self.text=gtk.TextBuffer()
-        self.textview=gtk.TextView(self.text)
+        #~ self.text=gtk.TextBuffer()
+        self.text=gtksourceview2.Buffer()
+        self.text.set_highlight_syntax(False)
+
+        lm=gtksourceview2.LanguageManager()
+        lang=lm.get_language('python')
+        self.text.set_language(lang)
+        self.textview=gtksourceview2.View(self.text)
+        self.textview.set_editable(False)
+        self.textview.set_cursor_visible(False)
         self.text.set_text('Double-click an item on the left for help.')
         
         scroll2 = gtk.ScrolledWindow()
