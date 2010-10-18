@@ -138,13 +138,12 @@ class gdir(gtk.Window):
         
     def __init__(self,dirarg='__builtins__'):
         """Initialization begins here"""
-        if ('_' not in dirarg) and (dirarg != 'self'):
-            exec 'import '+dirarg in globals()
-        print (dir(eval(dirarg)))
-        #~ __import__(dirarg)
+        #~ print (dir(eval(dirarg)))
         if len(sys.argv)>1:
             dirarg=sys.argv[-1]
         self.dirarg=dirarg
+        if ('_' not in dirarg) and (dirarg != 'self'):
+            exec 'import '+dirarg in globals()
         # keep track of which nodes were expanded
         # so we don't expand them again
         self.expanded=[]
