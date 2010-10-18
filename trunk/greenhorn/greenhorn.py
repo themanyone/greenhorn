@@ -17,7 +17,7 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
-import sys,inspect
+import os,sys,inspect
 
 #~ global modules
 import gtk,gtksourceview2
@@ -64,10 +64,16 @@ class gdir(gtk.Window):
         Clears recent searches so we can search again."""
         self.found=[]
         
-    def entry_activate_cb(self,entry,user_data=None):
+    def entry_activate_cb(self,widget,user_data=None):
         """Called when search button or Enter is pressed."""
         entry=self.entry1
-        text = entry.get_text()
+        text = entry.get_text().strip()
+        if text=='':
+            treeview=self.treeview
+            selection=treeview.get_selection()
+            (model,path) = selection.get_selected_rows()
+            iter=model.get_iter(path[0])
+            text=self.get_dot_name(treeview,iter,model)
         if user_data==Help:
             os.popen('devhelp -s '+text)
             return
@@ -119,8 +125,8 @@ class gdir(gtk.Window):
         """activated when user clicks on an item in the treeview"""
         model = treeview.get_model()
         iter  = model.get_iter(path)
-        val=model.get_value(iter,0)
         dotname=self.get_dot_name(treeview,iter,model)
+        val=model.get_value(iter,0)
         if val=='source':
             text=inspect.getsource(eval(dotname[:dotname.rindex('.')]))
             self.text.set_highlight_syntax(True)
