@@ -17,8 +17,7 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
-#~ import any modules you want to inspect
-import sys,inspect,os
+import sys,inspect
 
 #~ global modules
 import gtk
@@ -38,7 +37,7 @@ def filter_it(a,b):
     """return a filtering of a on list b"""
     return filter(lambda x:x in eval(a),b)
         
-class foo(gtk.Window):
+class gdir(gtk.Window):
     def run(self):
         """rum method to start the main loop"""
         gtk.main()
@@ -69,7 +68,7 @@ class foo(gtk.Window):
         """Called when search button or Enter is pressed."""
         entry=self.entry1
         text = entry.get_text()
-        if user_data=Help:
+        if user_data==Help:
             os.popen('devhelp -s '+text)
             return
         model=self.treeview.get_model()
@@ -80,7 +79,7 @@ class foo(gtk.Window):
         
         Called when somebody clicks to expand the list."""
         i=iter
-        e=eval('dir('+dirarg+')')
+        e=dir(eval(dirarg))
         dummy=self.treestore.iter_children(iter)
         for key in e:
             i=self.treestore.append(iter, [key])
@@ -109,7 +108,7 @@ class foo(gtk.Window):
         model = treeview.get_model()
         val=model.get_value(iter,0)
         dotname=self.get_dot_name(treeview,iter,model)
-        functype=str(eval('type('+dotname+')')).split("'")[1]
+        functype=str(type(eval(dotname))).split("'")[1]
         t=['function','instancemethod']
         print (dotname,functype)
         if path not in self.expanded and not functype in t:
@@ -127,7 +126,7 @@ class foo(gtk.Window):
         else:
             t=''
             try:
-                t=str(eval('type('+dotname+')')).split("'")[1]
+                t=str(type(eval(dotname))).split("'")[1]
             except:
                 pass
             print (dotname,t)
@@ -139,6 +138,9 @@ class foo(gtk.Window):
         
     def __init__(self,dirarg='__builtins__'):
         """Initialization begins here"""
+        if ('_' not in dirarg) and (dirarg != 'self'):
+            exec 'import '+dirarg in globals()
+        print (dir(eval(dirarg)))
         #~ __import__(dirarg)
         if len(sys.argv)>1:
             dirarg=sys.argv[-1]
@@ -203,5 +205,8 @@ class foo(gtk.Window):
         self.set_property("default-height",600)
         self.show_all()
 
-#~ if __name__ == "__main__":
-foo().run()
+if __name__ == "__main__":
+    gdir().run()
+else:
+    print("""Type greenhorn.gdir('module') for help on 'module'.
+    or use 'from greenhorn import gdir'""")
