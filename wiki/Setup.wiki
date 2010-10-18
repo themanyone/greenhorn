@@ -1,4 +1,4 @@
-#summary Dependencies
+#summary Greenhorn requirements
 #labels Phase-Requirements,Featured
 = Dependencies =
 Install the following dependencies:
