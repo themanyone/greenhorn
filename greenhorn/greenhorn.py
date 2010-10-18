@@ -207,5 +207,4 @@ class gdir(gtk.Window):
 if __name__ == "__main__":
     gdir().run()
 else:
-    print("""Type greenhorn.gdir('module') for help on 'module'.
-    or use 'from greenhorn import gdir'""")
+    print("""Type "gdir('module')" for help on 'module'.""")
