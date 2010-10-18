@@ -36,18 +36,13 @@ Displays interactive help for the 'gtk' module.
 
 To search for an item, type part of its name in the search box and press Enter.
 
-= Details =
+= Greenhorn Interactive =
 
-In order to display interactive help, the program must first load the module. There seems to be a bug with dynamic module loading, so modify the source to import additional modules that you may want interactive help on:
-
-#~ import any modules you want to inspect
+To use greenhorn's gdir() command interactively:
 {{{
-import sys,twitter,inspect,os
-}}}
-#~ global modules
-{{{
-import gtk
-}}}
+PYTHONSTARTUP=imports python
+>>>gdir('os')
+}}
 
 = Inspect Source Code =
 
