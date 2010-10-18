@@ -1,6 +1,5 @@
-#summary One-sentence summary of this page.
-#labels Phase-Requirements
-
+#summary Dependencies
+#labels Phase-Requirements,Featured
 = Dependencies =
 Install the following dependencies:
   * [http://www.python.org/ Python 2.7] (maybe others?)
