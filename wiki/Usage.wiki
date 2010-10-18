@@ -41,8 +41,11 @@ To search for an item, type part of its name in the search box and press Enter.
 To use greenhorn's gdir() command interactively:
 {{{
 PYTHONSTARTUP=imports python
+Python 2.7 (r27:82500, Sep 16 2010, 18:02:00) 
+Type "help", "copyright", "credits" or "license" for more information.
+Type "gdir('module')" for help on 'module'.
 >>>gdir('os')
-}}
+}}}
 
 = Inspect Source Code =
 
