@@ -8,4 +8,6 @@ Add your content here.
 
 = Details =
 
-No fancy markup necessary. Just the text, folks.
+===Use the *Edit This Page* link.===
+
+Keep comments to a minimum. We may remove them once they are no longer needed. :)
